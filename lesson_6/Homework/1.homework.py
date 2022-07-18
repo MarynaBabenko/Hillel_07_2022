@@ -24,6 +24,7 @@ anna = {
     "genre": "techno",
 }
 
+
 def validate_dj_data(data):
     if len(data) != 6:
         print("The number of arguments is not correct!")
@@ -66,22 +67,59 @@ def add_dj(data):
         return new_dj_data
 
 
+def update_dj(data):
+    print("Update DJ's data by format: name,age,equipment,discography,salary,genre: ")
+    update_input = input("Enter DJ's new data:")
+    update_data = update_input.split(",")
+    update_validated_data = validate_dj_data(update_data)
+
+    if update_validated_data is not None:
+        update_dj_data = {
+            "name": update_validated_data[0],
+            "age": update_validated_data[1],
+            "equipment": update_validated_data[2],
+            "discography": update_validated_data[3],
+            "salary": update_validated_data[4],
+            "genre": update_validated_data[5],
+        }
+        data.append(update_dj_data)
+        return update_dj_data
+
 if __name__ == "__main__":
     djs = [tiesto, avicci, anna]
-    allowed_options = "[add/list/names/exit]"
+    allowed_options = "[add/list/names/delete/update/exit/]"
 
     while True:
         desision = input(f"What should I do?{allowed_options}: ")
+
         if desision == "add":
             print("DJ input format: name,age,equipment,discography,salary,genre")
             new_dj = add_dj(djs)
             if new_dj:
                 print(f"DJ {new_dj['name']} is added!")
+
         elif desision == "list":
             pprint(djs)
+
         elif desision == "names":
             data = [dj["name"] for dj in djs]
             pprint(data)
+
+        elif desision == "delete":
+            delete_name = input("Input DJ's name for delete: ")
+            for dj in djs:
+                if dj["name"] == delete_name:
+                    djs.remove(dj)
+                    print(f'DJ {delete_name} is deleted!')
+
+        elif desision == "update":
+            update_name = input("Input DJ's name for update: ")
+            for dj in djs:
+                if dj["name"] == update_name:
+                    update_dj = update_dj(djs)
+                    djs.remove(dj)
+                    print(f'DJ {update_name} is updated!')
+
         elif desision == "exit":
             print("Exiting...")
             break
