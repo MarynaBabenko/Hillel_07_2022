@@ -55,7 +55,7 @@ def add_dj(data):
     validated_data = validate_dj_data(dj_data)
 
     if validated_data is not None:
-        new_dj_data = {
+        dj_data = {
             "name": validated_data[0],
             "age": validated_data[1],
             "equipment": validated_data[2],
@@ -63,24 +63,24 @@ def add_dj(data):
             "salary": validated_data[4],
             "genre": validated_data[5],
         }
-        data.append(new_dj_data)
-        return new_dj_data
+        data.append(dj_data)
+        return dj_data
 
 
 def update_dj(data):
     print("Update DJ's data by format: name,age,equipment,discography,salary,genre: ")
     update_input = input("Enter DJ's new data:")
     update_data = update_input.split(",")
-    update_validated_data = validate_dj_data(update_data)
+    validated_data = validate_dj_data(update_data)
 
-    if update_validated_data is not None:
+    if validated_data is not None:
         update_dj_data = {
-            "name": update_validated_data[0],
-            "age": update_validated_data[1],
-            "equipment": update_validated_data[2],
-            "discography": update_validated_data[3],
-            "salary": update_validated_data[4],
-            "genre": update_validated_data[5],
+            "name": validated_data[0],
+            "age": validated_data[1],
+            "equipment": validated_data[2],
+            "discography": validated_data[3],
+            "salary": validated_data[4],
+            "genre": validated_data[5],
         }
         data.append(update_dj_data)
         return update_dj_data
