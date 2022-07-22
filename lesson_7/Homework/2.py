@@ -28,3 +28,4 @@ Book.show_details(Book_1)
 Book.show_details(Book_2)
 
 print(f'Data for students: {Book_1.students_use()}')
+print(f'Data for students: {Book_2.students_use()}')

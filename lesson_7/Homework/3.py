@@ -1,30 +1,31 @@
-class Book:
+class Stadium:
 
-    def __init__(self, name, year, publishing_house, genre, author, price):
-        self.author = author
+    def __init__(self, name, open_date, country, city, placing):
         self.name = name
-        self.year = year
-        self.publishing_house = publishing_house
-        self.genre = genre
-        self.price = price
-
+        self.open_date = open_date
+        self.country = country
+        self.city = city
+        self.placing = placing
 
     def show_details(self):
-        print(f'Author: {self.author}\nBook name: {self.name}\n'
-              f'Year: {self.year}\n'
-              f'Publishing house: {self.publishing_house}\n'
-              f'Genre: {self.genre}\nPrice: {self.price}\n')
+        print(f'Stadium data:\nStadium name: {self.name}\n'
+              f'Open date: {self.open_date}\nCountry: {self.country}\n'
+              f'City: {self.city}\nPlacing: {self.placing}')
 
 
-    def students_use(self):
-        return(self.author,self.name,self.genre)
+    def user_case(self):
+        return(self.name,self.country,self.city)
 
-Book_1 = Book(author="Jack_London", name="Martin Eden",year = "2002",publishing_house="New_Book",
-          genre="novel", price="130")
-Book_2 = Book(name="Murder at the Vicarage",year = "2017",publishing_house="Collins",
-          genre="detective", author="Agatha Christie", price="300")
+Stadium_1 = Stadium(name="Donbass Arena",open_date="29.08.2009",country="Ukraine",
+          city="Donetsk", placing="center of the city")
 
-Book.show_details(Book_1)
-Book.show_details(Book_2)
+Stadium_2 = Stadium(name="Wembley Stadium",open_date="19.05.2007",country="England",
+          city="London", placing="	Wembley")
+Stadium.show_details(Stadium_1)
+Stadium.user_case(Stadium_1)
+print(f'User case: {Stadium_1.user_case()}\n')
 
-print(f'Data for students: {Book_1.students_use()}')
+
+Stadium.show_details(Stadium_2)
+Stadium.user_case(Stadium_2)
+print(f'User case: {Stadium_2.user_case()}\n')
