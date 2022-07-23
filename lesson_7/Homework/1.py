@@ -5,30 +5,51 @@ class Car:
         self.year = year
         self.manufacturer = manufacturer
         self.engine = engine
-        self.colour = colour                       # Я так розумію, що це - метод для введення данних
+        self.colour = colour
         self.price = price
 
 
     def show_details(self):
-        print(f'Car name: {self.name}\nYear: {self.year}\n'
+        print(f'\nCar name: {self.name}\nYear: {self.year}\n'
               f'Manufacturer: {self.manufacturer}\n'
               f'Engine: {self.engine}\nColour: {self.colour}\n'
-              f'Price: {self.price}\n')                   # Це функція(метод) виведення даних
+              f'Price: {self.price}\n')
 
+    def name(self):
+        print(f'Car name:{self.name}')
+        return (self.name)
 
-    def data_sale_print(self):
-        print(f'Data for sale:\nCar name: {self.name}\nYear: {self.year}\nPrice: {self.price}\n')  #доступ до окремих полів через методи класу
+    def year(self):
+        print(f'Year:{self.year}')
+        return (self.year)
 
-    def data_sale(self):
-        return(self.name,self.year,self.price)                  #доступ до окремих полів через методи класу треба "print"
+    def manufacturer(self):
+        print(f'Manufacturer:{self.manufacturer}')
+        return (self.manufacturer)
 
+    def engine(self):
+        print(f'Engine:{self.engine}')
+        return (self.engine)
+
+    def colour(self):
+        print(f'Colour:{self.colour}')
+        return (self.colour)
+
+    def price(self):
+        print(f'Price:{self.price}')
+        return (self.price)
 
 Volkswagen = Car(name="Volkswagen T-Roc",year = "2015",price="25000",
           manufacturer="Volkswagen", engine="1,5", colour="Red")
 
+Nissan= Car(name="Nissan Note",year = "2010",price="6500",
+          manufacturer="Nissan", engine="1,6", colour="Black")
 
 Car.show_details(Volkswagen)
-
-Car.data_sale_print(Volkswagen)
-
-print(f'Data for sale:\n{Volkswagen.data_sale()}')
+Car.name(Volkswagen)
+Car.year(Volkswagen)
+Car.price(Volkswagen)
+Car.manufacturer(Volkswagen)
+Car.engine(Volkswagen)
+Car.colour(Volkswagen)
+Car.show_details(Nissan)
