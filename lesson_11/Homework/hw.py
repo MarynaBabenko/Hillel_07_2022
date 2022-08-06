@@ -28,14 +28,31 @@ avicci_data = {
     "male": True
 }
 
+def validate(func):
+    def validate_dj_data(data):
+        if len(data) != 7:
+            print("The number of arguments is not correct!")
+            return None
 
-def input_data():
-    print("Add DJ's data by format: name,age,equipment,discography,"
-          "salary,genre,male: ")
-    user_input = input("Enter new DJ's data: ")
+        if data[0].isdigit():
+            print(f"{data[0]} is digit")
+            return None
 
-    dj_data = user_input.split(",")
+        for element in [data[1], data[3], data[4]]:
+            index = data.index(element)
+            if element.isdigit():
+                data[index] = int(element)
+            else:
+                print(f"{element} is not a digit")
+                return None
 
+        if not data[5].isalnum():
+            print(f"{data[5]} is not an alnum")
+            return None
+
+        return Dj(*data)
+
+    return validate_dj_data
 
 
 
@@ -59,76 +76,55 @@ class Dj:
             message = "She is"
         print(f"{message} {self.name}, {self.age} years old")
 
-    @classmethod
-    def validate(cls):
-
-        def validate_dj_data(data):
-
-            if len(data) != 7:
-                print("The number of arguments is not correct!")
-                return None
-
-            if data[0].isdigit():
-                print(f"{data[0]} is digit")
-                return None
-
-            for element in [data[1], data[3], data[4]]:
-                index = data.index(element)
-                if element.isdigit():
-                    data[index] = int(element)
-                else:
-                    print(f"{element} is not a digit")
-                    return None
-
-            if not data[5].isalnum():
-                print(f"{data[5]} is not an alnum")
-                return None
-
-        return Dj.validate(cls)
-
-
-    def add(cls):
+    @validate
+    def input_data(data):
         print("Update DJ's data by format: name,age,equipment,discography,salary,genre,male: ")
         user_input = input("Enter new DJ's data: ")
         dj_data = user_input.split(",")
-        new_dj = Dj.validate(cls)
+        return dj_data
+
+
+
+    @classmethod
+    def add(cls):
+        new_dj = Dj.input_data
 
         if new_dj is not None:
             cls.djs.append(new_dj)
             return new_dj
 
     @classmethod
-    def delete(cls, delete_name):
+    def delete(cls, name):
         for dj in cls.djs:
-            if dj.name == delete_name:
+            if dj.name == name:
                 index = cls.djs.index(dj)
                 del cls.djs[index]
                 return True
         return False
 
     @classmethod
-    def update(cls, name):
-        selected_dj = None
-        for dj in cls.djs:
-            if dj.name == name:
-                selected_dj = dj
-                break
+    # def update(cls, name):
+    #     selected_dj = None
+    #     for dj in cls.djs:
+    #         if dj.name == name:
+    #             selected_dj = dj
+    #             break
+    #
+    #     if selected_dj is None:
+    #         return
+    #
+    #     print("Update DJ's data by format: name,age,equipment,discography,salary,genre,male: ")
+    #     update_input = input("Enter DJ's new data:")
+    #     update_data = update_input.split(",")
+    #     new_dj = validate_dj_data(update_data)
 
-        if selected_dj is None:
-            return
-
-        print("Update DJ's data by format: name,age,equipment,discography,salary,genre,male: ")
-        update_input = input("Enter DJ's new data:")
-        update_data = update_input.split(",")
-        new_dj = Dj.validate_dj_data(update_data)
-
-        if new_dj is None:
-            return None
-
-        deleted = cls.delete(selected_dj)
-        if deleted:
-            cls.djs.append(new_dj)
-            return new_dj
+        # if new_dj is None:
+        #     return None
+        #
+        # deleted = cls.delete(selected_dj)
+        # if deleted:
+        #     cls.djs.append(new_dj)
+        #     return new_dj
 
     @classmethod
     def list(cls):
@@ -159,17 +155,18 @@ if __name__ == "__main__":
         elif desision == "names":
             Dj.names()
         elif desision == "add":
+            print("DJ input format: name,age,equipment,discography,salary,genre,male")
             new_dj = Dj.add()
             if new_dj:
                 print(f"DJ {new_dj.name} is added!")
-        elif desision == "update":
-            name = input("Input DJ's name for update: ")
-            updated_dj = Dj.update(name)
-            if updated_dj:
-                print(f'DJ {updated_dj.name} is updated!')
+        # elif desision == "update":
+        #     name = input("Input DJ's name for update: ")
+        #     updated_dj = Dj.update(name)
+        #     if updated_dj:
+        #         print(f'DJ {updated_dj.name} is updated!')          #Не працює
         elif desision == "delete":
             delete_name = input("Input DJ's name for delete: ")
-            deleted = Dj.delete(delete_name)
+            deleted = Dj.delete(delete_name)                        # Замінила Dj.delete(name) на Dj.delete(delete_name)
             if deleted is True:
                 print(f'DJ {delete_name} is deleted!')
         elif desision == "exit":
