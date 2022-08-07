@@ -28,8 +28,10 @@ avicci_data = {
     "male": True
 }
 
+
 def validate(func):
-    def validate_dj_data(data):
+    def validate_dj_data(*args, **kwargs):
+        data = func(*args, **kwargs)
         if len(data) != 7:
             print("The number of arguments is not correct!")
             return None
@@ -54,8 +56,6 @@ def validate(func):
 
     return validate_dj_data
 
-
-
 class Dj:
     # This is a list of all djs
     djs = []
@@ -76,9 +76,10 @@ class Dj:
             message = "She is"
         print(f"{message} {self.name}, {self.age} years old")
 
+    @classmethod
     @validate
-    def input_data(data):
-        print("Update DJ's data by format: name,age,equipment,discography,salary,genre,male: ")
+    def input_data(cls):
+        print("Enter DJ's data by format: name,age,equipment,discography,salary,genre,male: ")
         user_input = input("Enter new DJ's data: ")
         dj_data = user_input.split(",")
         return dj_data
@@ -87,8 +88,7 @@ class Dj:
 
     @classmethod
     def add(cls):
-        new_dj = Dj.input_data
-
+        new_dj = Dj.input_data()
         if new_dj is not None:
             cls.djs.append(new_dj)
             return new_dj
@@ -103,28 +103,23 @@ class Dj:
         return False
 
     @classmethod
-    # def update(cls, name):
-    #     selected_dj = None
-    #     for dj in cls.djs:
-    #         if dj.name == name:
-    #             selected_dj = dj
-    #             break
-    #
-    #     if selected_dj is None:
-    #         return
-    #
-    #     print("Update DJ's data by format: name,age,equipment,discography,salary,genre,male: ")
-    #     update_input = input("Enter DJ's new data:")
-    #     update_data = update_input.split(",")
-    #     new_dj = validate_dj_data(update_data)
+    def update(cls, name):
+        selected_dj = None
+        for dj in cls.djs:
+            if dj.name == name:
+                selected_dj = dj
+                break
 
-        # if new_dj is None:
-        #     return None
-        #
-        # deleted = cls.delete(selected_dj)
-        # if deleted:
-        #     cls.djs.append(new_dj)
-        #     return new_dj
+        if selected_dj is None:
+            return
+
+        updated_dj = Dj.input_data()
+
+        if updated_dj is None:
+            return None
+
+        cls.djs.append(updated_dj)
+        return updated_dj
 
     @classmethod
     def list(cls):
@@ -148,28 +143,28 @@ if __name__ == "__main__":
     allowed_options = "[add/list/names/delete/update/exit/]"
 
     while True:
-        desision = input(f"What should I do?{allowed_options}: ")
+        decision = input(f"What should I do?{allowed_options}: ")
 
-        if desision == "list":
+        if decision == "list":
             Dj.list()
-        elif desision == "names":
+        elif decision == "names":
             Dj.names()
-        elif desision == "add":
-            print("DJ input format: name,age,equipment,discography,salary,genre,male")
+        elif decision == "add":
             new_dj = Dj.add()
             if new_dj:
                 print(f"DJ {new_dj.name} is added!")
-        # elif desision == "update":
-        #     name = input("Input DJ's name for update: ")
-        #     updated_dj = Dj.update(name)
-        #     if updated_dj:
-        #         print(f'DJ {updated_dj.name} is updated!')          #Не працює
-        elif desision == "delete":
+        elif decision == "update":
+            name = input("Input DJ's name for update: ")
+            updated_dj = Dj.update(name)
+            if updated_dj:
+                print(f'DJ {updated_dj.name} is updated!')
+            deleted = Dj.delete(name)
+        elif decision == "delete":
             delete_name = input("Input DJ's name for delete: ")
             deleted = Dj.delete(delete_name)                        # Замінила Dj.delete(name) на Dj.delete(delete_name)
             if deleted is True:
                 print(f'DJ {delete_name} is deleted!')
-        elif desision == "exit":
+        elif decision == "exit":
             print("Exiting...")
             break
         else:
