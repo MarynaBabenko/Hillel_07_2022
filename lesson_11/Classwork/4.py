@@ -155,7 +155,7 @@ if __name__ == "__main__":
             name = input("Input DJ's name for update: ")
             updated_dj = Dj.update(name)
             if updated_dj:
-                print(f'DJ {updated_dj.name} is updated!')
+                print(f'DJ {updated_dj.name} is updated!')          #Не працює
         elif desision == "delete":
             delete_name = input("Input DJ's name for delete: ")
             deleted = Dj.delete(delete_name)                        # Замінила Dj.delete(name) на Dj.delete(delete_name)

@@ -161,7 +161,7 @@ if __name__ == "__main__":
             deleted = Dj.delete(name)
         elif decision == "delete":
             delete_name = input("Input DJ's name for delete: ")
-            deleted = Dj.delete(delete_name)                        # Замінила Dj.delete(name) на Dj.delete(delete_name)
+            deleted = Dj.delete(delete_name)
             if deleted is True:
                 print(f'DJ {delete_name} is deleted!')
         elif decision == "exit":
