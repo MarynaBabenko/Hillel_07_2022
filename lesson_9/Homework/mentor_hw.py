@@ -1,16 +1,15 @@
-class UnexpectedTypeException:
-    def __init__(self, expecting):
-        self.expecting_types = expecting
+class UnexpectedTypeException(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(message)
 
 
-def expected(expecting_types, str, int):
+def expected(expecting_types):
     def decorator(func):
         def wrapper_validate(*args, **kwargs):
             func_type = type(func(*args, **kwargs))
-            expecting_types = str, int
-            for i in expecting_types:
-                if func_type == i:
-                    print(func)
+            if func_type in expecting_types:
+                print(func)
 
             else:
 
@@ -26,4 +25,4 @@ def expected(expecting_types, str, int):
 def func():
     value = input("Please, input any tuple with string  and integer:")
     print(value)
-    return value
+    return func
