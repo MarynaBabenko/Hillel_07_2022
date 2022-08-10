@@ -3,6 +3,8 @@ class UnexpectedTypeException(Exception):
         self.message = message
         super().__init__(message)
 
+message = "Was expecting types: str, int"
+
 
 def expected(expecting_types):
     def decorator(func):
@@ -11,9 +13,8 @@ def expected(expecting_types):
             if func_type in expecting_types:
                 print(func)
                 return func
-
-            print(f"{UnexpectedTypeException}:Was expecting types: str, int")
-            return UnexpectedTypeException
+            else:
+                raise UnexpectedTypeException(Exception)
 
         return wrapper_validate
 
@@ -25,3 +26,4 @@ def func(value):
     print(value)
     return value
 
+func("value")
