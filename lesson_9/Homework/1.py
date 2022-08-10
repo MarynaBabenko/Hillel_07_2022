@@ -29,6 +29,6 @@ def func(value):
     print(value)
     return value
 
-func(9.8)
+func()
 
 
