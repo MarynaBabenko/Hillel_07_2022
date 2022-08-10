@@ -23,5 +23,5 @@ def expected(expecting_types):
 @expected(expecting_types=(str, int))
 def func(value):
     print(value)
-    return func
+    return value
 
