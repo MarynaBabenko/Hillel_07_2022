@@ -10,11 +10,10 @@ def expected(expecting_types):
             func_type = type(func(*args, **kwargs))
             if func_type in expecting_types:
                 print(func)
+                return func
 
-            else:
-
-                print(f"{UnexpectedTypeException}:Was expecting types: str, int")
-                return UnexpectedTypeException
+            print(f"{UnexpectedTypeException}:Was expecting types: str, int")
+            return UnexpectedTypeException
 
         return wrapper_validate
 
@@ -22,7 +21,7 @@ def expected(expecting_types):
 
 
 @expected(expecting_types=(str, int))
-def func():
-    value = input("Please, input any tuple with string  and integer:")
+def func(value):
     print(value)
     return func
+
