@@ -10,11 +10,14 @@ def expected(expecting_types):
     def decorator(func):
         def wrapper_validate(*args, **kwargs):
             func_type = type(func(*args, **kwargs))
+
             if func_type in expecting_types:
-                print(func)
-                # return func
+                return func
+
             else:
+
                 raise UnexpectedTypeException(message)
+
 
         return wrapper_validate
 
@@ -26,6 +29,6 @@ def func(value):
     print(value)
     return value
 
-
+func(9.8)
 
 
