@@ -12,9 +12,9 @@ def expected(expecting_types):
             func_type = type(func(*args, **kwargs))
             if func_type in expecting_types:
                 print(func)
-                return func
+                # return func
             else:
-                raise UnexpectedTypeException(Exception)
+                raise UnexpectedTypeException(message)
 
         return wrapper_validate
 
@@ -25,3 +25,7 @@ def expected(expecting_types):
 def func(value):
     print(value)
     return value
+
+
+
+
