@@ -25,5 +25,3 @@ def expected(expecting_types):
 def func(value):
     print(value)
     return value
-
-func("value")
