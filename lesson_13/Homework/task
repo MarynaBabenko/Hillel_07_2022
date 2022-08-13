@@ -1,0 +1,20 @@
+Закінчити все, що було на занятті
+Додати додатковий метод до класу Dj - read_from_csv()
+Відтепер зчитування відбувається не з JSON-файла, а з CSV-файла
+Запис файла при виході відтепер також працює з CSV-файлом
+
+# Json
+
+https://www.json.org/json-en.html
+
+https://docs.python.org/3.10/library/json.html?highlight=json
+
+https://www.youtube.com/watch?v=9N6a-VLBa2I
+
+
+
+# CSV
+
+https://docs.python.org/3.10/library/csv.html#module-csv
+
+https://www.youtube.com/watch?v=q5uM4VKywbA
