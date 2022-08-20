@@ -8,9 +8,9 @@ def get_random_list():
     """
     add the list with random numbers
     """
-    random_list = [randint(1, 10) for i in range(10000)]
+    random_list = [randint(1, 10) for i in range(10)]
     print(f"random list is:{random_list}")
-    sleep(2)
+    sleep(0)
     return random_list
 
 
@@ -19,7 +19,7 @@ def sum_list_elem(x):
     finds the sum of the elements of the list
     """
     sum_elem = sum(x)
-    print(f"The sum is: {sum_elem}")
+    print(sum_elem )
     return sum_elem
 
 
@@ -28,7 +28,7 @@ def list_average(x):
     finds the arithmetic mean of the elements of the list
     """
     average = statistics.mean(x)
-    print(f"The average is: {average}")
+    print(average)
     return average
 
 
@@ -49,6 +49,8 @@ def main():
     t1.join()
     t2.start()
     t3.start()
+
+
 
 
 if __name__ == "__main__":
