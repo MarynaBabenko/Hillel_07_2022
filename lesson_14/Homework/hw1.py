@@ -8,7 +8,7 @@ def get_random_list():
     """
     add the list with random numbers
     """
-    random_list = [randint(1, 10) for i in range(10)]
+    random_list = [randint(1, 10) for i in range(10000)]
     print(f"random list is:{random_list}")
     sleep(0)
     return random_list
