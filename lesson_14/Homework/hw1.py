@@ -1,22 +1,20 @@
 from random import randint
 from threading import Thread
 import statistics
-from time import sleep
 
 
 def get_random_list():
     """
-    add the list with random numbers
+    Generates the list with random numbers
     """
     random_list = [randint(1, 10) for i in range(10000)]
-    print(f"random list is:{random_list}")
-    sleep(0)
+    print(random_list)
     return random_list
 
 
 def sum_list_elem(x):
     """
-    finds the sum of the elements of the list
+    Find the sum of elements in the list
     """
     sum_elem = sum(x)
     print(sum_elem )
@@ -25,7 +23,7 @@ def sum_list_elem(x):
 
 def list_average(x):
     """
-    finds the arithmetic mean of the elements of the list
+    Find average of of given numbers in the list
     """
     average = statistics.mean(x)
     print(average)
@@ -33,13 +31,13 @@ def list_average(x):
 
 
 unified = get_random_list()
-"""
-the argument that creates a unified list
-"""
+
+# The argument that creates a unified list
+
 
 def main():
     """
-    creates and starts threads
+    Creating and starting threads
     """
     t1 = Thread(target=get_random_list, args=(unified,))
     t2 = Thread(target=sum_list_elem, args=(unified,))
@@ -49,9 +47,6 @@ def main():
     t1.join()
     t2.start()
     t3.start()
-
-
-
 
 if __name__ == "__main__":
     main()
